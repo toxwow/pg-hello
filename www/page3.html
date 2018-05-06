@@ -42,29 +42,27 @@
     <body onload="init()">
 
 
-    	<div class="uk-child-width-1-3@m uk-grid-small uk-grid-match" uk-grid>
-    <div>
-        <div class="uk-card uk-card-default uk-card-body">
-            <h3 class="uk-card-title">Default</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-        </div>
-    </div>
-    <div>
-        <div class="uk-card uk-card-primary uk-card-body">
-            <h3 class="uk-card-title">Primary</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-        </div>
-    </div>
-    <div>
-        <div class="uk-card uk-card-secondary uk-card-body">
-            <h3 class="uk-card-title">Secondary</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-        </div>
-    </div>
+    	<div class="uk-position-relative uk-visible-toggle uk-light" uk-slideshow>
+
+    <ul class="uk-slideshow-items">
+        <li>
+            <img src="img/photo.jpg" alt="" uk-cover>
+        </li>
+        <li>
+            <img src="img/dark.jpg" alt="" uk-cover>
+        </li>
+        <li>
+            <img src="img/light.jpg" alt="" uk-cover>
+        </li>
+    </ul>
+
+    <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
+    <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
+
 </div>
 
 
-<a class="uk-button uk-button-default" href="page3.html">Button test</a>
+<a class="uk-button uk-button-default" href="index.html">Button test</a>
 
 
     </body>
