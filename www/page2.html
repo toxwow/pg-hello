@@ -1,27 +1,3 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-		<script src="js/pgb.js"></script>
-		<script src="cordova.js"></script>
-		<!-- UIkit CSS -->
-		<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.42/css/uikit.min.css" /> -->
-		<link rel="stylesheet" href="css/uikit.min.css" />
-
-		<!-- UIkit JS -->
-		
-		<script src="js/uikit.min.js"></script>
-		<script src="js/uikit-icons.min.js"></script>
-
-
-	</head>
-	<body onload="init()">
-		
-
-			
-		</div>
-	</body>
-</html>
 
 
 <html>
@@ -38,34 +14,122 @@
 		<!-- UIkit JS -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.42/js/uikit.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.42/js/uikit-icons.min.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-auth.js"></script>
+        <script type="text/javascript">
+          
+          firebase.initializeApp({
+            apiKey: "AIzaSyDNJfmduRSncwtKmw3wX69KWz36gNgWj9Y",
+            authDomain: "health-care-71096.firebaseapp.com",
+            databaseURL: "https://health-care-71096.firebaseio.com",
+            projectId: "health-care-71096",
+            storageBucket: "",
+            messagingSenderId: "278088023798"
+        });
+        </script>
     </head>
     <body onload="init()">
 
+<center>
+    <br>
+    <br>
+    <br>
+    <br>
 
-    	<div class="uk-child-width-1-3@m uk-grid-small uk-grid-match" uk-grid>
-    <div>
-        <div class="uk-card uk-card-default uk-card-body">
-            <h3 class="uk-card-title">Default</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+    
+
+    <div class="uk-margin">
+        <div class="uk-inline">
+            <span class="uk-form-icon" uk-icon="icon: user"></span>
+            <input class="uk-input" type="text" id="imejl" >
         </div>
     </div>
-    <div>
-        <div class="uk-card uk-card-primary uk-card-body">
-            <h3 class="uk-card-title">Primary</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+
+    <div class="uk-margin">
+        <div class="uk-inline">
+            <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
+            <input class="uk-input" id="pw" type="password">
         </div>
     </div>
-    <div>
-        <div class="uk-card uk-card-secondary uk-card-body">
-            <h3 class="uk-card-title">Secondary</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-        </div>
-    </div>
-</div>
+
+    <button class="uk-button uk-button-default" href="" id="loginButton">Button test</button>
 
 
-<a class="uk-button uk-button-default" href="page3.html">Button test</a>
 
+<div id="statuslog"></div>
+
+</center>
+
+
+
+<script>
+           // Initialize Firebase
+        
+const provider = new firebase.auth.GoogleAuthProvider();
+        var database = firebase.database();
+
+
+document.querySelector('#loginButton').addEventListener('click', function () {
+
+  firebase.auth().signOut().then(function() {
+  // Sign-out successful.
+ 
+}).catch(function(error) {
+  // An error happened.
+});
+          var login = document.getElementById('imejl').value;
+          var pw = document.getElementById('pw').value;
+        firebase.auth().signInWithEmailAndPassword(login, pw).catch(function(error) {
+  // Handle Errors here.
+  var errorCode = error.code;
+  var errorMessage = error.message;
+  alert(errorMessage);
+  console.log(errorCode);
+  // ...
+});
+        firebase.auth().onAuthStateChanged(function(user) {
+          
+          // setTimeout(function(){
+          //   var user = firebase.auth().currentUser;
+  if (user) {
+    // User is signed in.
+        // alert("witaj dziubasku");
+        // var a = document.getElementById("loginButton");
+        // a.href = "#home";
+    window.location.href = "page3.html";
+    var user = firebase.auth().currentUser;
+var name, email, photoUrl, uid, emailVerified;
+
+
+
+  } else {
+        // alert("spierdalaj dziubasku");
+  }
+
+
+// },3000);
+});
+      });
+
+
+    function status(){
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    // User is signed in.
+    var status = document.getElementById('statuslog');
+    status.innerHTML = "użytkownik zalogowany!"
+  } else {
+    // No user is signed in.
+    var status = document.getElementById('statuslog');
+    status.innerHTML = "użytkownik nie zalogowany!"
+  }
+});
+}
+
+status();
+
+</script>
 
     </body>
 </html>
